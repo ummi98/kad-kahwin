@@ -1164,7 +1164,7 @@
     </div>
   </div>
 
-  <script>
+   <script>
     // ===== INVITATION OPENING =====
     function openInvitation() {
       const coverPage = document.getElementById('coverPage');
@@ -1275,11 +1275,11 @@
         let ucapanHtml = "";
         data.forEach(row => {
           if (row[0] && row[1]) {
-            ucapanHtml += 
+            ucapanHtml += `
               <div class="ucapan-item">
                 <strong>💝 ${row[0]}</strong>
                 <p>"${row[1]}"</p>
-              </div>;
+              </div>`;
           }
         });
         document.getElementById("ucapan-perempuan").innerHTML = ucapanHtml ||
@@ -1290,7 +1290,6 @@
           '<div style="text-align: center; padding: 40px; color: #999;"><p>❌ Gagal memuat ucapan.</p></div>';
       }
     }
-
 
     // ===== LOAD KEHADIRAN =====
     async function loadKehadiran() {
