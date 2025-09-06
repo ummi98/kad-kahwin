@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kad Kahwin Digital - Ikhwan & Atiqah</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 10px;
+      color: #2c3e50;
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    #app-container {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      margin-bottom: 90px;
+    }
+
+    /* ===== COVER PAGE STYLES ===== */
+    .cover-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .cover-page.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.9);
+    }
+
+    .cover-content {
+      text-align: center;
+      color: white;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 50px 40px;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .cover-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(45deg, #fff, #ffd1dc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cover-subtitle {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .cover-date {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-style: italic;
+    }
+
+    /* ===== HEART BUTTON STYLES ===== */
+
+    .open-link:hover {
+      transform: scale(1.1);
+    }
+
+    .open-link:active {
+      transform: scale(0.95);
+    }
+
+    .open-text {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px 25px;
+      border-radius: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes heartbeat {
+
+      0%,
+      70% {
+        transform: scale(1);
+      }
+
+      14%,
+      42% {
+        transform: scale(1.05);
+      }
+
+      28% {
+        transform: scale(1);
+      }
+    }
+
+    /* ===== FLOATING HEARTS ===== */
+    .cover-hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .cover-heart,
+    .heart {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.6);
+      animation: float 8s infinite linear;
+    }
+
+    .cover-heart {
+      font-size: 25px;
+    }
+
+    .heart {
+      font-size: 20px;
+      color: rgba(233, 30, 99, 0.6);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* ===== MAIN CONTENT STYLES ===== */
+    .main-content {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.8s ease;
+    }
+
+    .main-content.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* ===== SECTION STYLES ===== */
+    section {
+      min-height: 100vh;
+      padding: 80px 30px 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Section 1 = gradient */
+    .section-1 {
+      position: relative;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    }
+
+    /* Semua section lain = guna background image sama */
+    .section-2,
+    .section-3,
+    .section-4,
+    .section-majlis {
+      position: relative;
+      background: url('images/bg.jpeg') no-repeat center center;
+      background-size: cover;
+    }
+
+    /* Overlay untuk semua section */
+    .section-1::before,
+    .section-2::before,
+    .section-3::before,
+    .section-4::before,
+    .section-majlis::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.75);
+      /* putih lembut */
+      z-index: 1;
+    }
+
+    /* Pastikan content sentiasa di atas overlay */
+    .section-1>*,
+    .section-2>*,
+    .section-3>*,
+    .section-4>*,
+    .section-majlis>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .content-wrapper.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.8rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(45deg, #e91e63, #9c27b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #2c3e50;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 25px 0 20px;
+      color: #2c3e50;
+    }
+
+    p {
+      margin-bottom: 15px;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #555;
+    }
+
+    /* ===== COMPONENT STYLES ===== */
+    .couple-names {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #e91e63;
+      margin: 25px 0;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .date-location {
+      font-size: 1.3rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px 30px;
+      border-radius: 20px;
+      margin: 25px 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(233, 30, 99, 0.1);
+    }
+
+    .schedule-item {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 25px;
+      margin: 10px 0;
+      border-radius: 15px;
+      border-left: 5px solid #e91e63;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+
+    .schedule-item:hover {
+      transform: translateX(5px);
+    }
+
+    .doa-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      margin: 25px 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      font-style: italic;
+      line-height: 1.8;
+      border: 1px solid rgba(156, 39, 176, 0.1);
+    }
+
+    #countdown {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 25px;
+      border-radius: 20px;
+      margin-top: 30px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .ucapan-item {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 15px;
+      text-align: left;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #9c27b0;
+      transition: transform 0.3s ease;
+    }
+
+    .ucapan-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .ucapan-item strong {
+      color: #2c3e50;
+      font-size: 1.2rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .ucapan-item p {
+      margin: 0;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* ===== BOTTOM NAVIGATION ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 30px);
+      max-width: 450px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 70px;
+      z-index: 999;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-item {
+      flex: 1;
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 10px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .nav-item span {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    /* ===== DROPDOWN STYLES ===== */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      min-width: 200px;
+      padding: 15px;
+      z-index: 100;
+      margin-bottom: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 0;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-item span {
+      flex: 1;
+      font-size: 1rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .contact-item a {
+      text-decoration: none;
+      font-size: 1.4rem;
+      margin-left: 10px;
+      color: #333;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-item a:hover {
+      transform: scale(1.2);
+    }
+
+    /* ===== MODAL STYLES ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .close {
+      float: right;
+      font-size: 28px;
+      cursor: pointer;
+      color: #aaa;
+      transition: color 0.3s ease;
+    }
+
+    .close:hover {
+      color: #333;
+    }
+
+    /* ===== FORM STYLES ===== */
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 480px) {
+      body {
+        padding: 5px;
+      }
+
+      section {
+        padding: 60px 20px 100px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 2.3rem;
+      }
+
+      .cover-title {
+        font-size: 3rem;
+      }
+
+      .cover-content {
+        padding: 40px 30px;
+      }
+
+      .bottom-nav {
+        max-width: calc(100% - 10px);
+        height: 65px;
+      }
+
+      .nav-item {
+        font-size: 0.8rem;
+      }
+
+      .nav-item span {
+        font-size: 1.4rem;
+      }
+
+      .modal-content {
+        margin: 10% auto;
+        padding: 25px;
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .cover-title {
+        font-size: 2.5rem;
+      }
+
+      .couple-names {
+        font-size: 1.8rem;
+      }
+
+      .date-location {
+        font-size: 1.1rem;
+        padding: 15px 20px;
+      }
+    }
+
+    /* ===== UTILITY CLASSES ===== */
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+
+    .mt-20 {
+      margin-top: 20px;
+    }
+
+    /* === OVERRIDE UNTUK TEMA KLASIK SONGKET === */
+
+    /* Background body lebih klasik */
+    body {
+      background: #fdfcf9 url('https://i.pinimg.com/736x/85/39/78/853978d64656eafe07e235ea7263cfde.jpg') repeat;
+      background-size: 280px;
+      color: #2c2c2c;
+    }
+
+    /* Container lebih kemas klasik */
+    #app-container {
+      border: 6px solid gold;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    /* Cover klasik maroon + songket */
+    /* ==== Efek Kad Buka Macam Pintu ==== */
+    .cover-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      perspective: 1500px;
+      /* penting untuk 3D */
+      overflow: hidden;
+    }
+
+    .card-left,
+    .card-right {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: maroon url('https://i.pinimg.com/736x/85/39/78/853978d64656eafe07e235ea7263cfde.jpg') center/cover no-repeat;
+      border: 3px solid gold;
+      transition: transform 1s ease-in-out;
+      z-index: 2;
+    }
+
+    .card-left {
+      left: 0;
+      transform-origin: left center;
+    }
+
+    .card-right {
+      right: 0;
+      transform-origin: right center;
+    }
+
+    /* bila class open ditambah → pintu terbuka */
+    .cover-page.open .card-left {
+      transform: rotateY(-100deg);
+    }
+
+    .cover-page.open .card-right {
+      transform: rotateY(100deg);
+    }
+
+    /* isi content atas cover (tajuk, butang) */
+    .cover-content,
+    .open-link,
+    .open-text {
+      position: relative;
+      z-index: 3;
+    }
+
+
+    .cover-content {
+      background: white !important;
+      border: 4px solid gold;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .cover-title {
+      background: none !important;
+      -webkit-text-fill-color: maroon !important;
+      font-size: 3rem;
+      text-shadow: none;
+    }
+
+    .cover-subtitle,
+    .cover-date {
+      color: #444 !important;
+    }
+
+    /* Section gaya kad klasik */
+    section {
+      background: white !important;
+      border: 4px solid gold;
+      border-radius: 0;
+    }
+
+    section::before {
+      background: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    /* Typography klasik */
+    h1,
+    h2 {
+      background: none !important;
+      -webkit-text-fill-color: maroon !important;
+      color: maroon !important;
+      text-shadow: none !important;
+    }
+
+    h3 {
+      color: maroon !important;
+    }
+
+    /* Button klasik */
+    button {
+      background: maroon !important;
+      color: gold !important;
+      border: 2px solid gold !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    button:hover {
+      background: #600000 !important;
+      transform: scale(1.03);
+    }
+
+    /* Bottom nav klasik */
+    .bottom-nav {
+      background: maroon !important;
+      border: 3px solid gold;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .nav-item {
+      color: gold !important;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 215, 0, 0.2) !important;
+    }
+
+    .open-link {
+      position: relative;
+      z-index: 3;
+      /* pastikan dia atas layer putih */
+      display: inline-block;
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      text-decoration: none !important;
+      padding: 0 !important;
+    }
+
+    .open-link img {
+      width: 150px;
+      /* saiz gambar */
+      height: auto;
+      display: block;
+      border: none;
+      background: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app-container">
+    <!-- Cover Page -->
+    <div class="cover-page" id="coverPage">
+      <div class="card-left"></div>
+      <div class="card-right"></div>
+
+      <a href="javascript:void(0)" class="open-link" onclick="openInvitation()">
+        <img src="images/open.png" alt="Buka Kad" width="120">
+      </a>
+      <p class="open-text">Tekan untuk buka jemputan</p>
+    </div>
+
+    <!-- Main Invitation Content -->
+    <div class="main-content" id="mainContent">
+      <!-- Background Music -->
+      <audio id="weddingMusic" loop>
+        <source src="music/laguPernikahan.mp3" type="audio/mpeg">
+      </audio>
+
+      <!-- Floating hearts -->
+      <div class="hearts" id="hearts"></div>
+
+      <!-- Section 1 - Main Title -->
+      <section class="section-1" id="home">
+        <div class="content-wrapper">
+          <h1>Ikhwan ❤️ Atiqah</h1>
+          <div class="date-location">
+            <p><strong>📅 18 Oktober 2025</strong></p>
+            <p>🏖️ Qurata Riverside Resort, Kuala Terengganu</p>
+          </div>
+          <p style="font-size: 1.2rem; margin-top: 30px; font-style: italic; color: #666;">
+            "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri,
+            supaya kamu cenderung dan merasa tenteram kepadanya"
+          </p>
+          <p style="text-align: right; margin-top: 15px; font-weight: 600; color: #9c27b0;">
+            - Surah Ar-Rum: 21
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2 - Details -->
+      <section class="section-2" id="details">
+        <div class="content-wrapper">
+          <h2>🌸 Assalamualaikum & Salam Sejahtera 🌸</h2>
+
+          <p style="margin: 30px 0; font-size: 1.2rem;">
+            Dengan penuh kesyukuran kehadrat Illahi, kami mempersilakan Dato'/Datin/Dr/Tuan/Puan/Encik/Cik
+            ke majlis walimatulurus anakanda kami:
+          </p>
+
+          <div class="couple-names">
+            <p><strong>Shuhaimi Bin Awang</strong> & <strong>Norazimah Binti Yaakub</strong></p>
+          </div>
+
+          <div class="date-location">
+            <p><strong>📅 Tarikh:</strong> Sabtu, 18 Oktober 2025</p>
+            <p><strong>⏰ Masa:</strong> 11:00 Pagi - 4:00 Petang</p>
+            <p><strong>📍 Tempat:</strong> Qurata Riverside Resort, Kuala Terengganu</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section - Aturcara Majlis -->
+      <section class="section-majlis" id="aturcara">
+        <div class="content-wrapper">
+          <h2>✨ Aturcara Majlis ✨</h2>
+          <div class="schedule-item">
+            <p><strong>🕐 11:00 Pagi</strong> – Ketibaan Tetamu</p>
+          </div>
+          <div class="schedule-item">
+            <p><strong>🤵👰 12:00 Tengah Hari</strong> – Ketibaan Pengantin</p>
+          </div>
+          <div class="schedule-item">
+            <p><strong>👑 12:45 Tengah Hari</strong> – Upacara Bersanding</p>
+          </div>
+          <div class="schedule-item">
+            <p><strong>📸 1:00 Petang</strong> – Sesi Bergambar</p>
+          </div>
+          <div class="schedule-item">
+            <p><strong>🌅 4:00 Petang</strong> – Majlis Berakhir</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 - Doa & Countdown -->
+      <section class="section-3" id="berkat">
+        <div class="content-wrapper">
+          <h2>🤲 Doa Keberkatan 🤲</h2>
+          <div class="doa-box">
+            <p><em>"Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai
+                ini,</em></p>
+            <p><em>Kurniakanlah mereka zuriat yang soleh dan solehah.</em></p>
+            <p><em>Kekalkanlah jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan
+                ini."</em></p>
+            <p style="margin-top: 20px; font-weight: 600; color: #2c3e50; text-align: center;">
+              <strong>Aamiin Ya Rabbal Alamiin 🤲</strong>
+            </p>
+          </div>
+          <div id="countdown"></div>
+        </div>
+      </section>
+
+      <!-- Section 4 - Guestbook -->
+      <section class="section-4" id="guestbook">
+        <div class="content-wrapper">
+          <h2>💌 Ucapan & Doa 💌</h2>
+          <p style="font-size: 1.2rem; margin-bottom: 30px; color: #666;">
+            Terima kasih atas doa & kata-kata indah dari hati yang ikhlas ✨
+          </p>
+          <div id="ucapan-perempuan">
+            <div style="text-align: center; padding: 40px; color: #999;">
+              <p>📝 Memuat ucapan...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Kehadiran -->
+      <section class="section-4" id="attendance">
+        <div class="content-wrapper">
+          <h2>📋 Kehadiran Tetamu 📋</h2>
+          <p style="font-size: 1.2rem; margin-bottom: 25px; color: #666;">
+            Mohon sahkan kehadiran anda untuk persiapan yang lebih baik 💕
+          </p>
+
+          <div
+            style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 15px; margin: 20px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+            <p style="font-size: 1.3rem; color: #2c3e50;"><strong>👥 Jumlah tetamu sahkan hadir:</strong></p>
+            <p style="font-size: 2rem; color: #e91e63; font-weight: bold; margin: 10px 0;">
+              <span id="jumlah-hadir">0</span> orang
+            </p>
+          </div>
+
+          <button onclick="openKehadiran()" style="margin-top: 20px; width: 100%; max-width: 300px;">
+            ✅ Sahkan Kehadiran
+          </button>
+        </div>
+      </section>
+
+      <!-- Modal Kehadiran -->
+      <div id="kehadiranModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeKehadiran()">&times;</span>
+          <h2 style="color: #2c3e50; margin-bottom: 20px;">📋 Sahkan Kehadiran</h2>
+          <form id="kehadiranForm">
+            <select name="status" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+              <option value="">-- Pilih Status Kehadiran --</option>
+              <option value="Hadir">Hadir</option>
+              <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+            <button type="submit" style="width: 100%; margin-top: 15px;">✅ Hantar Kehadiran</button>
+          </form>
+        </div>
+      </div>
+
+
+      <!-- Modal RSVP -->
+      <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2 style="color: #2c3e50; margin-bottom: 20px;">💌 Tinggalkan Ucapan</h2>
+          <form id="rsvpForm">
+            <input type="text" name="nama" placeholder="Nama anda" required>
+            <textarea name="ucapan" placeholder="Tulis ucapan atau doa untuk pengantin..." required></textarea>
+            <input type="hidden" name="pengantin" id="pengantinField">
+            <button type="submit" style="width: 100%; margin-top: 15px;">💝 Hantar Ucapan</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav">
+        <div class="dropdown nav-item">
+          <a class="dropdown-btn">
+            <span>📞</span>
+            Call
+          </a>
+          <div class="dropdown-content">
+            <div class="contact-item">
+              <span>Bapa Pengantin:</span>
+              <a href="tel:+60123456789" title="Call">📞</a>
+              <a href="https://wa.me/60123456789" target="_blank" title="WhatsApp">💬</a>
+            </div>
+            <div class="contact-item">
+              <span>Ibu Pengantin:</span>
+              <a href="tel:+60198765432" title="Call">📞</a>
+              <a href="https://wa.me/60198765432" target="_blank" title="WhatsApp">💬</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item" onclick="openRSVP('Atiqah')">
+          <span>📝</span>
+          Ucapan
+        </div>
+
+        <div class="dropdown nav-item">
+          <a class="dropdown-btn2">
+            <span>📍</span>
+            Lokasi
+          </a>
+          <div class="dropdown-content">
+            <div class="contact-item">
+              <span>Waze Navigation:</span>
+              <a href="https://waze.com/ul?q=Qurata%20Riverside%20Resort" target="_blank" title="Buka di Waze">🚗</a>
+            </div>
+            <div class="contact-item">
+              <span>Google Maps:</span>
+              <a href="https://maps.app.goo.gl/BN4174oyt11S1j966" target="_blank" title="Buka di Google Maps">🗺️</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    // ===== INVITATION OPENING =====
+    function openInvitation() {
+      const coverPage = document.getElementById('coverPage');
+      const mainContent = document.getElementById('mainContent');
+
+      // Tambah class .open → trigger animasi pintu
+      coverPage.classList.add('open');
+
+      // Tunggu animasi (1s ikut CSS transition)
+      setTimeout(() => {
+        coverPage.style.display = 'none'; // sembunyikan cover selepas pintu terbuka
+        mainContent.classList.add('visible');
+        startFloatingHearts();
+
+        const music = document.getElementById('weddingMusic');
+        music.play().catch(e => console.log("Audio autoplay prevented:", e));
+      }, 1000);
+    }
+
+
+    // ===== SCROLL ANIMATIONS =====
+    document.addEventListener("DOMContentLoaded", () => {
+      const contentWrappers = document.querySelectorAll(".content-wrapper");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+          else entry.target.classList.remove("visible");
+        });
+      }, { threshold: 0.2, rootMargin: '-15% 0px -15% 0px' });
+
+      contentWrappers.forEach(wrapper => observer.observe(wrapper));
+    });
+
+    // ===== COUNTDOWN TIMER =====
+    const countdownDate = new Date("October 18, 2025 11:00:00").getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+      if (distance > 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("countdown").innerHTML = `
+          <p>⏳ <strong>Countdown Hari Bahagia</strong></p>
+          <p style="font-size: 1.8rem; margin-top: 15px; text-shadow: 1px 1px 4px rgba(0,0,0,0.3);">
+            ${days} hari ${hours} jam ${minutes} minit lagi 💍
+          </p>`;
+      } else {
+        document.getElementById("countdown").innerHTML = `
+          <p>🎉 <strong>Hari Yang Ditunggu Telah Tiba!</strong></p>
+          <p style="font-size: 1.5rem; margin-top: 10px;">Selamat Pengantin Baru! 💕</p>`;
+      }
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
+    // ===== FLOATING HEARTS =====
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = ['💕', '💖', '💗', '💘'][Math.floor(Math.random() * 4)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      heart.style.fontSize = (Math.random() * 8 + 18) + 'px';
+      document.getElementById('hearts').appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    function createCoverHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('cover-heart');
+      heart.innerHTML = ['💕', '💖', '💗', '💘'][Math.floor(Math.random() * 4)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      document.getElementById('coverHearts').appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    function startFloatingHearts() {
+      setInterval(createHeart, 2000);
+    }
+    setInterval(createCoverHeart, 1800);
+
+    // ===== DROPDOWN NAVIGATION =====
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdown1 = document.querySelector(".dropdown-btn");
+      const dropdown2 = document.querySelector(".dropdown-btn2");
+      if (dropdown1) dropdown1.addEventListener("click", function (e) {
+        e.preventDefault();
+        this.parentElement.classList.toggle("active");
+        if (dropdown2) dropdown2.parentElement.classList.remove("active");
+      });
+      if (dropdown2) dropdown2.addEventListener("click", function (e) {
+        e.preventDefault();
+        this.parentElement.classList.toggle("active");
+        if (dropdown1) dropdown1.parentElement.classList.remove("active");
+      });
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.dropdown')) {
+          document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+        }
+      });
+    });
+
+    // ===== LOAD UCAPAN FROM GOOGLE SHEETS =====
+    async function loadUcapan() {
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzu-NByy9VT3keoV6P16uUdKpVRthfCQngobfvfr0mKizgKXoDsfLRnCni7xGabwCU/exec?type=Ucapan");
+        const data = await response.json();
+        let ucapanHtml = "";
+        data.forEach(row => {
+          if (row[0] && row[1]) {
+            ucapanHtml += `
+              <div class="ucapan-item">
+                <strong>💝 ${row[0]}</strong>
+                <p>"${row[1]}"</p>
+              </div>`;
+          }
+        });
+        document.getElementById("ucapan-perempuan").innerHTML = ucapanHtml ||
+          '<div style="text-align: center; padding: 40px; color: #999;"><p>💌 Belum ada ucapan. Jadilah yang pertama! 😊</p></div>';
+      } catch (error) {
+        console.error('Error loading ucapan:', error);
+        document.getElementById("ucapan-perempuan").innerHTML =
+          '<div style="text-align: center; padding: 40px; color: #999;"><p>❌ Gagal memuat ucapan.</p></div>';
+      }
+    }
+
+    // ===== LOAD KEHADIRAN =====
+    async function loadKehadiran() {
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzu-NByy9VT3keoV6P16uUdKpVRthfCQngobfvfr0mKizgKXoDsfLRnCni7xGabwCU/exec?type=Kehadiran");
+        const data = await response.json();
+        let hadir = data.filter(row => row[0] === "Hadir").length;
+        document.getElementById("jumlah-hadir").innerText = hadir;
+      } catch (error) {
+        console.error('Error loading kehadiran:', error);
+        document.getElementById("jumlah-hadir").innerText = "?";
+      }
+    }
+
+    // ===== MODAL FUNCTIONS =====
+    function openRSVP(pengantin) {
+      document.getElementById("pengantinField").value = pengantin;
+      document.getElementById("rsvpModal").style.display = "block";
+    }
+    function closeModal() { document.getElementById("rsvpModal").style.display = "none"; }
+    function openKehadiran() { document.getElementById("kehadiranModal").style.display = "block"; }
+    function closeKehadiran() { document.getElementById("kehadiranModal").style.display = "none"; }
+    window.onclick = function (event) {
+      if (event.target === document.getElementById("rsvpModal")) closeModal();
+      if (event.target === document.getElementById("kehadiranModal")) closeKehadiran();
+    }
+
+    // ===== FORM SUBMISSIONS =====
+    document.addEventListener('DOMContentLoaded', function () {
+      // RSVP Form
+      const rsvpForm = document.getElementById("rsvpForm");
+      if (rsvpForm) {
+        rsvpForm.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const submitBtn = this.querySelector('button[type="submit"]');
+          submitBtn.innerHTML = '⏳ Menghantar...'; submitBtn.disabled = true;
+          try {
+            const data = {
+              nama: this.nama.value.trim(),
+              ucapan: this.ucapan.value.trim(),
+              pengantin: this.pengantin.value,
+              type: "Ucapan"
+            };
+            const res = await fetch("https://script.google.com/macros/s/AKfycbzu-NByy9VT3keoV6P16uUdKpVRthfCQngobfvfr0mKizgKXoDsfLRnCni7xGabwCU/exec", {
+              method: "POST",
+              body: new URLSearchParams(data)
+            });
+            const result = await res.json();
+            if (result.result === "success") {
+              alert("✅ Ucapan berjaya dihantar!");
+              this.reset(); closeModal(); setTimeout(loadUcapan, 1000);
+            } else throw new Error();
+          } catch {
+            alert("❌ Gagal menghantar ucapan.");
+          } finally {
+            submitBtn.innerHTML = '💝 Hantar Ucapan'; submitBtn.disabled = false;
+          }
+        });
+      }
+
+      // Kehadiran Form
+      const kehadiranForm = document.getElementById("kehadiranForm");
+      if (kehadiranForm) {
+        kehadiranForm.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const submitBtn = this.querySelector('button[type="submit"]');
+          submitBtn.innerHTML = '⏳ Menghantar...'; submitBtn.disabled = true;
+          try {
+            const data = { status: this.status.value, type: "Kehadiran" };
+            const res = await fetch("https://script.google.com/macros/s/AKfycbzu-NByy9VT3keoV6P16uUdKpVRthfCQngobfvfr0mKizgKXoDsfLRnCni7xGabwCU/exec", {
+              method: "POST",
+              body: new URLSearchParams(data)
+            });
+            const result = await res.json();
+            if (result.result === "success") {
+              alert("✅ Kehadiran berjaya direkod!");
+              this.reset(); closeKehadiran(); setTimeout(loadKehadiran, 1000);
+            } else throw new Error();
+          } catch {
+            alert("❌ Gagal merekod kehadiran.");
+          } finally {
+            submitBtn.innerHTML = '✅ Hantar Kehadiran'; submitBtn.disabled = false;
+          }
+        });
+      }
+    });
+
+    // ===== INITIALIZE ON LOAD =====
+    document.addEventListener('DOMContentLoaded', function () {
+      loadUcapan();
+      loadKehadiran();
+    });
+  </script>
+
+</body>
+
+</html>
