@@ -452,18 +452,13 @@
     }
 
    #ucapan-perempuan {
-  max-height: 300px;
-  overflow-y: auto;
+  max-height: 300px;   /* tinggi tetap */
+  overflow-y: auto;    /* aktifkan scroll bila isi lebih */
   padding: 15px;
   border: 2px solid #eee;
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-/* Semua ucapan tapi hanya 5 latest nampak dulu */
-.hidden-ucapan {
-  display: none;
 }
 
     /* ===== BOTTOM NAVIGATION ===== */
@@ -1273,42 +1268,28 @@
     });
 
     // ===== LOAD UCAPAN FROM GOOGLE SHEETS =====
-async function loadUcapan() {
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzu-NByy9VT3keoV6P16uUdKpVRthfCQngobfvfr0mKizgKXoDsfLRnCni7xGabwCU/exec?type=Ucapan");
-    const data = await response.json();
-
-    // Reverse supaya ucapan terbaru di atas
-    const allUcapan = data.reverse();
-
-    let ucapanHtml = "";
-    allUcapan.forEach((row, index) => {
-      if (row[0] && row[1]) {
-        ucapanHtml += `
-          <div class="ucapan-item ${index >= 5 ? "hidden-ucapan" : ""}">
-            <strong>💝 ${row[0]}</strong>
-            <p>"${row[1]}"</p>
-          </div>`;
+    async function loadUcapan() {
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzu-NByy9VT3keoV6P16uUdKpVRthfCQngobfvfr0mKizgKXoDsfLRnCni7xGabwCU/exec?type=Ucapan");
+        const data = await response.json();
+        let ucapanHtml = "";
+        data.forEach(row => {
+          if (row[0] && row[1]) {
+            ucapanHtml += 
+              <div class="ucapan-item">
+                <strong>💝 ${row[0]}</strong>
+                <p>"${row[1]}"</p>
+              </div>;
+          }
+        });
+        document.getElementById("ucapan-perempuan").innerHTML = ucapanHtml ||
+          '<div style="text-align: center; padding: 40px; color: #999;"><p>💌 Belum ada ucapan. Jadilah yang pertama! 😊</p></div>';
+      } catch (error) {
+        console.error('Error loading ucapan:', error);
+        document.getElementById("ucapan-perempuan").innerHTML =
+          '<div style="text-align: center; padding: 40px; color: #999;"><p>❌ Gagal memuat ucapan.</p></div>';
       }
-    });
-
-    document.getElementById("ucapan-perempuan").innerHTML = ucapanHtml ||
-      '<div style="text-align: center; padding: 40px; color: #999;"><p>💌 Belum ada ucapan. Jadilah yang pertama! 😊</p></div>';
-
-    // Bila user scroll → tunjuk semua ucapan
-    const container = document.getElementById("ucapan-perempuan");
-    container.addEventListener("scroll", function () {
-      document.querySelectorAll(".hidden-ucapan").forEach(el => {
-        el.classList.remove("hidden-ucapan");
-      });
-    });
-
-  } catch (error) {
-    console.error('Error loading ucapan:', error);
-    document.getElementById("ucapan-perempuan").innerHTML =
-      '<div style="text-align: center; padding: 40px; color: #999;"><p>❌ Gagal memuat ucapan.</p></div>';
-  }
-}
+    }
 
 
     // ===== LOAD KEHADIRAN =====
