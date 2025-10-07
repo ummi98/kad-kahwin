@@ -508,7 +508,6 @@ p {
 }
 
 /* ===== DROPDOWN STYLES ===== */
-/* ===== DROPDOWN STYLES ===== */
 .dropdown {
   position: relative;
 }
@@ -583,13 +582,13 @@ p {
 
 .contact-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 12px 0;
-  padding: 15px 12px;
+  padding: 15px;
   border-bottom: 2px solid rgba(218, 165, 32, 0.3);
-  gap: 15px;
+  gap: 12px;
   text-decoration: none;
+  border-radius: 8px;
 }
 
 .contact-item:last-child {
@@ -599,7 +598,6 @@ p {
 .contact-item.clickable {
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 8px;
 }
 
 .contact-item.clickable:hover {
@@ -607,39 +605,51 @@ p {
   transform: translateX(5px);
 }
 
-.contact-item > span {
-  font-size: 1rem;
+.contact-name {
+  font-size: 1.1rem;
   color: maroon;
-  font-weight: 600;
+  font-weight: 700;
   text-align: left;
   display: block;
-  flex: 1;
+  margin-bottom: 5px;
 }
 
 .contact-actions {
   display: flex;
-  gap: 15px;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .contact-item a {
   text-decoration: none;
-  font-size: 1.8rem;
-  color: maroon;
-  transition: transform 0.2s ease;
-  display: inline-block;
+  font-size: 0.95rem;
+  color: white;
+  background: maroon;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
 }
 
 .contact-item a:hover {
-  transform: scale(1.2);
+  background: #600000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(128, 0, 0, 0.3);
 }
 
 .contact-item .icon {
-  font-size: 1.8rem;
-  color: maroon;
-  display: inline-block;
+  font-size: 1rem;
+  color: white;
+  background: maroon;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
 }
 
 /* ===== RESPONSIVE DESIGN FOR DROPDOWN ===== */
@@ -650,16 +660,17 @@ p {
   }
   
   .contact-item {
-    padding: 12px 10px;
+    padding: 12px;
   }
   
-  .contact-item > span {
-    font-size: 0.95rem;
+  .contact-name {
+    font-size: 1rem;
   }
   
   .contact-item a,
   .contact-item .icon {
-    font-size: 1.6rem;
+    font-size: 0.9rem;
+    padding: 7px 14px;
   }
 }
 
@@ -670,16 +681,18 @@ p {
   }
   
   .contact-item {
-    padding: 10px 8px;
+    padding: 10px;
+    gap: 10px;
   }
   
-  .contact-item > span {
-    font-size: 0.9rem;
+  .contact-name {
+    font-size: 0.95rem;
   }
   
   .contact-item a,
   .contact-item .icon {
-    font-size: 1.5rem;
+    font-size: 0.85rem;
+    padding: 6px 12px;
   }
 }
 
@@ -1271,6 +1284,7 @@ button:hover {
       </div>
 
       <!-- Bottom Navigation -->
+<!-- Bottom Navigation -->
 <nav class="bottom-nav">
   <div class="nav-item dropdown">
     <div class="dropdown-trigger">
@@ -1279,17 +1293,17 @@ button:hover {
     </div>
     <div class="dropdown-content">
       <div class="contact-item">
+        <span class="contact-name">Bapa Pengantin</span>
         <div class="contact-actions">
-        <span class="margin-right: 20px;">Bapa:</span>
-          <a href="tel:+60199809663" title="Call">📞</a>
-          <a href="https://wa.me/60199809663" target="_blank" title="WhatsApp">💬</a>
+          <a href="tel:+60199809663" title="Call">📞 Call</a>
+          <a href="https://wa.me/60199809663" target="_blank" title="WhatsApp">💬 WhatsApp</a>
         </div>
       </div>
       <div class="contact-item">
+        <span class="contact-name">Ibu Pengantin</span>
         <div class="contact-actions">
-        <span class="margin-right: 20px;">Ibu:</span>
-          <a href="tel:+60139410169" title="Call">📞</a>
-          <a href="https://wa.me/60139410169" target="_blank" title="WhatsApp">💬</a>
+          <a href="tel:+60139410169" title="Call">📞 Call</a>
+          <a href="https://wa.me/60139410169" target="_blank" title="WhatsApp">💬 WhatsApp</a>
         </div>
       </div>
     </div>
@@ -1307,15 +1321,15 @@ button:hover {
     </div>
     <div class="dropdown-content">
       <a href="https://waze.com/ul?q=Qurata%20Riverside%20Resort" target="_blank" class="contact-item clickable">
-        <span>Waze Navigation:</span>
+        <span class="contact-name">Waze Navigation</span>
         <div class="contact-actions">
-          <span class="icon">🚗</span>
+          <span class="icon">🚗 Buka Waze</span>
         </div>
       </a>
       <a href="https://maps.app.goo.gl/BN4174oyt11S1j966" target="_blank" class="contact-item clickable">
-        <span>Google Maps:</span>
+        <span class="contact-name">Google Maps</span>
         <div class="contact-actions">
-          <span class="icon">🗺️</span>
+          <span class="icon">🗺️ Buka Maps</span>
         </div>
       </a>
     </div>
