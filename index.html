@@ -24,319 +24,317 @@
     rel="stylesheet">
   <style>
     /* ===== RESET & BASE STYLES ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 10px;
-      color: #2c3e50;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 10px;
+  color: #2c3e50;
+}
 
-    /* ===== MAIN CONTAINER ===== */
-    #app-container {
-      width: 100%;
-      max-width: 480px;
-      background: #ffffff;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
-      border-radius: 20px;
-      margin-bottom: 90px;
-    }
+/* ===== MAIN CONTAINER ===== */
+#app-container {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-bottom: 90px;
+}
 
-    /* ===== COVER PAGE STYLES ===== */
-    .cover-page {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+/* ===== COVER PAGE STYLES ===== */
+.cover-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
 
-    .cover-page.hidden {
-      opacity: 0;
-      visibility: hidden;
-      transform: scale(0.9);
-    }
+.cover-page.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
+}
 
-    .cover-content {
-      text-align: center;
-      color: white;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 50px 40px;
-      border-radius: 25px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-      margin-bottom: 40px;
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
+.cover-content {
+  text-align: center;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-    .cover-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(45deg, #fff, #ffd1dc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+.cover-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #fff, #ffd1dc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-    .cover-subtitle {
-      font-size: 1.3rem;
-      font-weight: 500;
-      margin-bottom: 10px;
-      color: rgba(255, 255, 255, 0.9);
-    }
+.cover-subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
+}
 
-    .cover-date {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.8);
-      font-style: italic;
-    }
+.cover-date {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
 
-    /* ===== HEART BUTTON STYLES ===== */
+/* ===== HEART BUTTON STYLES ===== */
 
-    .open-link:hover {
-      transform: scale(1.1);
-    }
+.open-link:hover {
+  transform: scale(1.1);
+}
 
-    .open-link:active {
-      transform: scale(0.95);
-    }
+.open-link:active {
+  transform: scale(0.95);
+}
 
-    .open-text {
-      margin-top: 20px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: white;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 12px 25px;
-      border-radius: 25px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-    }
+.open-text {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px 25px;
+  border-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
 
-    @keyframes heartbeat {
+@keyframes heartbeat {
+  0%,
+  70% {
+    transform: scale(1);
+  }
 
-      0%,
-      70% {
-        transform: scale(1);
-      }
+  14%,
+  42% {
+    transform: scale(1.05);
+  }
 
-      14%,
-      42% {
-        transform: scale(1.05);
-      }
+  28% {
+    transform: scale(1);
+  }
+}
 
-      28% {
-        transform: scale(1);
-      }
-    }
+/* ===== FLOATING HEARTS ===== */
+.cover-hearts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-    /* ===== FLOATING HEARTS ===== */
-    .cover-hearts {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-    }
+.cover-heart,
+.heart {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.6);
+  animation: float 8s infinite linear;
+}
 
-    .cover-heart,
-    .heart {
-      position: absolute;
-      color: rgba(255, 255, 255, 0.6);
-      animation: float 8s infinite linear;
-    }
+.cover-heart {
+  font-size: 25px;
+}
 
-    .cover-heart {
-      font-size: 25px;
-    }
+.heart {
+  font-size: 20px;
+  color: rgba(233, 30, 99, 0.6);
+}
 
-    .heart {
-      font-size: 20px;
-      color: rgba(233, 30, 99, 0.6);
-    }
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 1;
+  }
 
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 1;
-      }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
 
-      100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-      }
-    }
+/* ===== MAIN CONTENT STYLES ===== */
+.main-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.8s ease;
+}
 
-    /* ===== MAIN CONTENT STYLES ===== */
-    .main-content {
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.8s ease;
-    }
+.main-content.visible {
+  opacity: 1;
+  visibility: visible;
+}
 
-    .main-content.visible {
-      opacity: 1;
-      visibility: visible;
-    }
+.hearts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-    .hearts {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-    }
+/* ===== SECTION STYLES ===== */
+section {
+  min-height: 100vh;
+  padding: 80px 30px 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color-scheme: light;
+}
 
-    /* ===== SECTION STYLES ===== */
-    section {
-      min-height: 100vh;
-      padding: 80px 30px 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color-scheme: light;
-    }
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+  z-index: 1;
+}
 
-    section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.85);
-      pointer-events: none;
-      z-index: 1;
-    }
+/* Section 1 = gradient */
+.section-1 {
+  position: relative;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
 
-    /* Section 1 = gradient */
-    .section-1 {
-      position: relative;
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    }
+/* Semua section lain = guna background image sama */
+.section-2,
+.section-3,
+.section-4,
+.section-majlis {
+  position: relative;
+  background: url('images/bg.jpeg') no-repeat center center;
+  background-size: cover;
+}
 
-    /* Semua section lain = guna background image sama */
-    .section-2,
-    .section-3,
-    .section-4,
-    .section-majlis {
-      position: relative;
-      background: url('images/bg.jpeg') no-repeat center center;
-      background-size: cover;
-    }
+/* Overlay untuk semua section */
+.section-1::before,
+.section-2::before,
+.section-3::before,
+.section-4::before,
+.section-majlis::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+}
 
-    /* Overlay untuk semua section */
-    .section-1::before,
-    .section-2::before,
-    .section-3::before,
-    .section-4::before,
-    .section-majlis::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.75);
-      /* putih lembut */
-      z-index: 1;
-    }
+/* Pastikan content sentiasa di atas overlay */
+.section-1>*,
+.section-2>*,
+.section-3>*,
+.section-4>*,
+.section-majlis>* {
+  position: relative;
+  z-index: 2;
+}
 
-    /* Pastikan content sentiasa di atas overlay */
-    .section-1>*,
-    .section-2>*,
-    .section-3>*,
-    .section-4>*,
-    .section-majlis>* {
-      position: relative;
-      z-index: 2;
-    }
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
 
-    .content-wrapper {
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+.content-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .content-wrapper.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* ===== TYPOGRAPHY ===== */
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #e91e63, #9c27b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-    /* ===== TYPOGRAPHY ===== */
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3.8rem;
-      font-weight: 700;
-      margin-bottom: 25px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-      background: linear-gradient(45deg, #e91e63, #9c27b0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
 
-    h2 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.8rem;
-      font-weight: 600;
-      margin-bottom: 30px;
-      color: #2c3e50;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-    }
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 25px 0 20px;
+  color: #2c3e50;
+}
 
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 25px 0 20px;
-      color: #2c3e50;
-    }
+p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+}
 
-    p {
-      margin-bottom: 15px;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #555;
-    }
-
-    /* ===== COMPONENT STYLES ===== */
-    /* Nama parents */
+/* ===== COMPONENT STYLES ===== */
+/* Nama parents */
 .couple-names.parents p {
   font-family: "Times New Roman", Georgia, serif;
   font-size: 1.2rem;
@@ -346,10 +344,10 @@
 
 /* Nama pengantin */
 .couple-names.bride-groom p {
-  font-family: "Great Vibes", cursive; /* awak boleh guna Google Fonts */
+  font-family: "Great Vibes", cursive;
   font-size: 2rem;
   font-weight: 400;
-  color: #800000; /* maroon */
+  color: #800000;
   line-height: 1.6;
 }
 
@@ -363,7 +361,7 @@
 .bride-groom .bride {
   font-family: "Great Vibes", cursive;
   font-size: 2.2rem;
-  color: #b22222; /* merah elegan */
+  color: #b22222;
 }
 
 .bride-groom .and {
@@ -374,86 +372,86 @@
   color: #555;
 }
 
-    .date-location {
-      font-size: 1.3rem;
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px 30px;
-      border-radius: 20px;
-      margin: 25px 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(233, 30, 99, 0.1);
-    }
+.date-location {
+  font-size: 1.3rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 30px;
+  border-radius: 20px;
+  margin: 25px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(233, 30, 99, 0.1);
+}
 
-    .schedule-item {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 15px 25px;
-      margin: 10px 0;
-      border-radius: 15px;
-      border-left: 5px solid #e91e63;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      text-align: left;
-      transition: transform 0.3s ease;
-    }
+.schedule-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 25px;
+  margin: 10px 0;
+  border-radius: 15px;
+  border-left: 5px solid #e91e63;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
 
-    .schedule-item:hover {
-      transform: translateX(5px);
-    }
+.schedule-item:hover {
+  transform: translateX(5px);
+}
 
-    .doa-box {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
-      border-radius: 20px;
-      margin: 25px 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      font-style: italic;
-      line-height: 1.8;
-      border: 1px solid rgba(156, 39, 176, 0.1);
-    }
+.doa-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 20px;
+  margin: 25px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-style: italic;
+  line-height: 1.8;
+  border: 1px solid rgba(156, 39, 176, 0.1);
+}
 
-    #countdown {
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      color: white;
-      padding: 25px;
-      border-radius: 20px;
-      margin-top: 30px;
-      font-size: 1.4rem;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-    }
+#countdown {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 25px;
+  border-radius: 20px;
+  margin-top: 30px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
 
-    .ucapan-item {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 15px;
-      text-align: left;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      border-left: 4px solid #9c27b0;
-      transition: transform 0.3s ease;
-    }
+.ucapan-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #9c27b0;
+  transition: transform 0.3s ease;
+}
 
-    .ucapan-item:hover {
-      transform: translateY(-3px);
-    }
+.ucapan-item:hover {
+  transform: translateY(-3px);
+}
 
-    .ucapan-item strong {
-      color: #2c3e50;
-      font-size: 1.2rem;
-      display: block;
-      margin-bottom: 8px;
-    }
+.ucapan-item strong {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 8px;
+}
 
-    .ucapan-item p {
-      margin: 0;
-      color: #666;
-      font-style: italic;
-    }
+.ucapan-item p {
+  margin: 0;
+  color: #666;
+  font-style: italic;
+}
 
-   #ucapan-perempuan {
-  max-height: 300px;   /* tinggi tetap */
-  overflow-y: auto;    /* aktifkan scroll bila isi lebih */
+#ucapan-perempuan {
+  max-height: 300px;
+  overflow-y: auto;
   padding: 15px;
   border: 2px solid #eee;
   border-radius: 12px;
@@ -461,7 +459,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-    /* ===== BOTTOM NAVIGATION ===== */
+/* ===== BOTTOM NAVIGATION ===== */
 .bottom-nav {
   position: fixed;
   bottom: 15px;
@@ -501,55 +499,69 @@
   transform: translateY(-2px);
 }
 
-.nav-item span {
+.nav-item > span {
   display: block;
   font-size: 1.6rem;
   margin-bottom: 5px;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  pointer-events: none; /* Prevents span from blocking clicks */
+  pointer-events: none;
 }
 
 /* ===== DROPDOWN STYLES ===== */
 .dropdown {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
-.dropdown-btn,
-.dropdown-btn2 {
+.dropdown-trigger {
+  cursor: pointer;
+  user-select: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  cursor: pointer;
-  color: white;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  pointer-events: all;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 15px);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: white;
+  border: 3px solid gold;
+  border-radius: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   min-width: 250px;
   padding: 15px;
-  z-index: 1000;
-  margin-bottom: 10px;
-  backdrop-filter: blur(10px);
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+.dropdown-content::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid gold;
+}
+
+.dropdown-content::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
 }
 
 .dropdown.active .dropdown-content {
@@ -573,445 +585,432 @@
   align-items: center;
   justify-content: space-between;
   margin: 8px 0;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+  gap: 10px;
 }
 
 .contact-item:last-child {
   border-bottom: none;
 }
 
-.contact-item span {
+.contact-item > span {
   flex: 1;
-  font-size: 0.9rem;
-  color: #333;
-  font-weight: 500;
+  font-size: 0.95rem;
+  color: maroon;
+  font-weight: 600;
   text-align: left;
-  display: inline;
+  display: block;
   margin: 0;
   filter: none;
 }
 
 .contact-item a {
   text-decoration: none;
-  font-size: 1.4rem;
-  margin-left: 10px;
-  color: #333;
+  font-size: 1.5rem;
+  color: maroon;
   transition: transform 0.2s ease;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .contact-item a:hover {
   transform: scale(1.2);
 }
 
+/* ===== MODAL STYLES ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: white;
+  margin: 5% auto;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #333;
+}
+
+/* ===== FORM STYLES ===== */
+form {
+  margin-top: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 480px) {
+  body {
+    padding: 5px;
+  }
+
+  section {
+    padding: 60px 20px 100px;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.3rem;
+  }
+
+  .cover-title {
+    font-size: 3rem;
+  }
+
+  .cover-content {
+    padding: 40px 30px;
+  }
+
   .bottom-nav {
-    width: calc(100% - 20px);
+    max-width: calc(100% - 10px);
     height: 65px;
+    width: calc(100% - 20px);
     bottom: 10px;
   }
-  
+
   .nav-item {
     font-size: 0.75rem;
     padding: 8px 5px;
     margin: 0 3px;
   }
-  
-  .nav-item span {
+
+  .nav-item > span {
     font-size: 1.4rem;
     margin-bottom: 3px;
   }
-  
+
   .dropdown-content {
     min-width: 220px;
     padding: 12px;
-    font-size: 0.85rem;
   }
-  
+
   .contact-item {
     padding: 6px 0;
     margin: 6px 0;
   }
-  
-  .contact-item span {
+
+  .contact-item > span {
+    font-size: 0.85rem;
+  }
+
+  .contact-item a {
+    font-size: 1.3rem;
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    padding: 25px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .cover-title {
+    font-size: 2.5rem;
+  }
+
+  .couple-names {
+    font-size: 1.8rem;
+  }
+
+  .date-location {
+    font-size: 1.1rem;
+    padding: 15px 20px;
+  }
+
+  .bottom-nav {
+    height: 60px;
+  }
+
+  .nav-item {
+    font-size: 0.7rem;
+    padding: 6px 3px;
+  }
+
+  .nav-item > span {
+    font-size: 1.2rem;
+  }
+
+  .dropdown-content {
+    min-width: 200px;
+    padding: 10px;
+  }
+
+  .contact-item > span {
     font-size: 0.8rem;
   }
-  
+
   .contact-item a {
     font-size: 1.2rem;
   }
 }
 
-@media (max-width: 360px) {
-  .bottom-nav {
-    height: 60px;
-  }
-  
-  .nav-item {
-    font-size: 0.7rem;
-    padding: 6px 3px;
-  }
-  
-  .nav-item span {
-    font-size: 1.2rem;
-  }
-  
-  .dropdown-content {
-    min-width: 200px;
-    padding: 10px;
-  }
+/* ===== UTILITY CLASSES ===== */
+.text-center {
+  text-align: center;
 }
 
-    /* ===== MODAL STYLES ===== */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-    }
+.mb-20 {
+  margin-bottom: 20px;
+}
 
-    .modal-content {
-      background: white;
-      margin: 5% auto;
-      padding: 30px;
-      width: 90%;
-      max-width: 500px;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      animation: modalFadeIn 0.3s ease;
-    }
+.mt-20 {
+  margin-top: 20px;
+}
 
-    @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
+/* === OVERRIDE UNTUK TEMA KLASIK SONGKET === */
 
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+/* Background body lebih klasik */
+body {
+  background: #fdfcf9 url('https://i.pinimg.com/736x/85/39/78/853978d64656eafe07e235ea7263cfde.jpg') repeat;
+  background-size: 280px;
+  color: #2c2c2c;
+}
 
-    .close {
-      float: right;
-      font-size: 28px;
-      cursor: pointer;
-      color: #aaa;
-      transition: color 0.3s ease;
-    }
+/* Container lebih kemas klasik */
+#app-container {
+  border: 6px solid gold;
+  border-radius: 0;
+  box-shadow: none;
+}
 
-    .close:hover {
-      color: #333;
-    }
+/* Cover klasik maroon + songket */
+/* ==== Efek Kad Buka Macam Pintu ==== */
+.cover-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  perspective: 1500px;
+  overflow: hidden;
+}
 
-    /* ===== FORM STYLES ===== */
-    form {
-      margin-top: 20px;
-    }
+.card-left,
+.card-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: maroon url('https://i.pinimg.com/736x/85/39/78/853978d64656eafe07e235ea7263cfde.jpg') center/cover no-repeat;
+  border: 3px solid gold;
+  transition: transform 1s ease-in-out;
+  z-index: 2;
+}
 
-    input[type="text"],
-    input[type="number"],
-    textarea {
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-      font-family: 'Poppins', sans-serif;
-    }
+.card-left {
+  left: 0;
+  transform-origin: left center;
+}
 
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
-    }
+.card-right {
+  right: 0;
+  transform-origin: right center;
+}
 
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+/* bila class open ditambah → pintu terbuka */
+.cover-page.open .card-left {
+  transform: rotateY(-100deg);
+}
 
-    button {
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
-    }
+.cover-page.open .card-right {
+  transform: rotateY(100deg);
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    }
+/* isi content atas cover (tajuk, butang) */
+.cover-content,
+.open-link,
+.open-text {
+  position: relative;
+  z-index: 3;
+}
 
-    button:active {
-      transform: translateY(0);
-    }
+.cover-content {
+  background: white !important;
+  border: 4px solid gold;
+  border-radius: 0;
+  box-shadow: none;
+}
 
-    /* ===== RESPONSIVE DESIGN ===== */
-    @media (max-width: 480px) {
-      body {
-        padding: 5px;
-      }
+.cover-title {
+  background: none !important;
+  -webkit-text-fill-color: maroon !important;
+  font-size: 3rem;
+  text-shadow: none;
+}
 
-      section {
-        padding: 60px 20px 100px;
-      }
+.cover-subtitle,
+.cover-date {
+  color: #444 !important;
+}
 
-      h1 {
-        font-size: 3rem;
-      }
+/* Section gaya kad klasik */
+section {
+  background: white !important;
+  border: 4px solid gold;
+  border-radius: 0;
+}
 
-      h2 {
-        font-size: 2.3rem;
-      }
+section::before {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
 
-      .cover-title {
-        font-size: 3rem;
-      }
+/* Typography klasik */
+h1,
+h2 {
+  background: none !important;
+  -webkit-text-fill-color: maroon !important;
+  color: maroon !important;
+  text-shadow: none !important;
+}
 
-      .cover-content {
-        padding: 40px 30px;
-      }
+h3 {
+  color: maroon !important;
+}
 
-      .bottom-nav {
-        max-width: calc(100% - 10px);
-        height: 65px;
-      }
+/* Button klasik */
+button {
+  background: maroon !important;
+  color: gold !important;
+  border: 2px solid gold !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
 
-      .nav-item {
-        font-size: 0.8rem;
-      }
+button:hover {
+  background: #600000 !important;
+  transform: scale(1.03);
+}
 
-      .nav-item span {
-        font-size: 1.4rem;
-      }
+/* Bottom nav klasik */
+.bottom-nav {
+  background: maroon !important;
+  border: 3px solid gold;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
 
-      .modal-content {
-        margin: 10% auto;
-        padding: 25px;
-        width: 95%;
-      }
-    }
+.nav-item {
+  color: gold !important;
+}
 
-    @media (max-width: 360px) {
-      h1 {
-        font-size: 2.5rem;
-      }
+.nav-item:hover {
+  background: rgba(255, 215, 0, 0.2) !important;
+}
 
-      h2 {
-        font-size: 2rem;
-      }
+.open-link {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  padding: 0 !important;
+}
 
-      .cover-title {
-        font-size: 2.5rem;
-      }
-
-      .couple-names {
-        font-size: 1.8rem;
-      }
-
-      .date-location {
-        font-size: 1.1rem;
-        padding: 15px 20px;
-      }
-    }
-
-    /* ===== UTILITY CLASSES ===== */
-    .text-center {
-      text-align: center;
-    }
-
-    .mb-20 {
-      margin-bottom: 20px;
-    }
-
-    .mt-20 {
-      margin-top: 20px;
-    }
-
-    /* === OVERRIDE UNTUK TEMA KLASIK SONGKET === */
-
-    /* Background body lebih klasik */
-    body {
-      background: #fdfcf9 url('https://i.pinimg.com/736x/85/39/78/853978d64656eafe07e235ea7263cfde.jpg') repeat;
-      background-size: 280px;
-      color: #2c2c2c;
-    }
-
-    /* Container lebih kemas klasik */
-    #app-container {
-      border: 6px solid gold;
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    /* Cover klasik maroon + songket */
-    /* ==== Efek Kad Buka Macam Pintu ==== */
-    .cover-page {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      perspective: 1500px;
-      /* penting untuk 3D */
-      overflow: hidden;
-    }
-
-    .card-left,
-    .card-right {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: maroon url('https://i.pinimg.com/736x/85/39/78/853978d64656eafe07e235ea7263cfde.jpg') center/cover no-repeat;
-      border: 3px solid gold;
-      transition: transform 1s ease-in-out;
-      z-index: 2;
-    }
-
-    .card-left {
-      left: 0;
-      transform-origin: left center;
-    }
-
-    .card-right {
-      right: 0;
-      transform-origin: right center;
-    }
-
-    /* bila class open ditambah → pintu terbuka */
-    .cover-page.open .card-left {
-      transform: rotateY(-100deg);
-    }
-
-    .cover-page.open .card-right {
-      transform: rotateY(100deg);
-    }
-
-    /* isi content atas cover (tajuk, butang) */
-    .cover-content,
-    .open-link,
-    .open-text {
-      position: relative;
-      z-index: 3;
-    }
-
-
-    .cover-content {
-      background: white !important;
-      border: 4px solid gold;
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    .cover-title {
-      background: none !important;
-      -webkit-text-fill-color: maroon !important;
-      font-size: 3rem;
-      text-shadow: none;
-    }
-
-    .cover-subtitle,
-    .cover-date {
-      color: #444 !important;
-    }
-
-    /* Section gaya kad klasik */
-    section {
-      background: white !important;
-      border: 4px solid gold;
-      border-radius: 0;
-    }
-
-    section::before {
-      background: rgba(255, 255, 255, 0.95) !important;
-    }
-
-    /* Typography klasik */
-    h1,
-    h2 {
-      background: none !important;
-      -webkit-text-fill-color: maroon !important;
-      color: maroon !important;
-      text-shadow: none !important;
-    }
-
-    h3 {
-      color: maroon !important;
-    }
-
-    /* Button klasik */
-    button {
-      background: maroon !important;
-      color: gold !important;
-      border: 2px solid gold !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-    }
-
-    button:hover {
-      background: #600000 !important;
-      transform: scale(1.03);
-    }
-
-    /* Bottom nav klasik */
-    .bottom-nav {
-      background: maroon !important;
-      border: 3px solid gold;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-    }
-
-    .nav-item {
-      color: gold !important;
-    }
-
-    .nav-item:hover {
-      background: rgba(255, 215, 0, 0.2) !important;
-    }
-
-    .open-link {
-      position: relative;
-      z-index: 3;
-      /* pastikan dia atas layer putih */
-      display: inline-block;
-      background: none !important;
-      border: none !important;
-      box-shadow: none !important;
-      text-decoration: none !important;
-      padding: 0 !important;
-    }
-
-    .open-link img {
-      width: 150px;
-      /* saiz gambar */
-      height: auto;
-      display: block;
-      border: none;
-      background: none;
-    }
+.open-link img {
+  width: 150px;
+  height: auto;
+  display: block;
+  border: none;
+  background: none;
+}
   </style>
 </head>
 
@@ -1208,8 +1207,8 @@
 
       <!-- Bottom Navigation -->
       <nav class="bottom-nav">
-  <div class="dropdown nav-item">
-    <div class="dropdown-btn">
+  <div class="nav-item dropdown">
+    <div class="dropdown-trigger">
       <span>📞</span>
       Call
     </div>
@@ -1226,12 +1225,14 @@
       </div>
     </div>
   </div>
+  
   <div class="nav-item" onclick="openRSVP('Atiqah')">
     <span>📝</span>
     Ucapan
   </div>
-  <div class="dropdown nav-item">
-    <div class="dropdown-btn2">
+  
+  <div class="nav-item dropdown">
+    <div class="dropdown-trigger">
       <span>📍</span>
       Lokasi
     </div>
