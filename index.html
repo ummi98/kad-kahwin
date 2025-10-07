@@ -508,7 +508,6 @@ p {
 }
 
 /* ===== DROPDOWN STYLES ===== */
-/* ===== DROPDOWN STYLES ===== */
 .dropdown {
   position: relative;
 }
@@ -526,17 +525,16 @@ p {
 .dropdown-content {
   display: none;
   position: fixed;
-  bottom: 90px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 95px;
+  left: 20px;
+  right: 20px;
   background: white;
   border: 3px solid gold;
   border-radius: 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  width: calc(100% - 40px);
-  max-width: 400px;
   padding: 20px;
   z-index: 10000;
+  margin: 0 auto;
 }
 
 .dropdown-content::before {
@@ -573,23 +571,24 @@ p {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    bottom: 70px;
+    bottom: 75px;
   }
   to {
     opacity: 1;
-    bottom: 90px;
+    bottom: 95px;
   }
 }
 
 .contact-item {
   display: flex;
   flex-direction: column;
-  margin: 12px 0;
+  margin: 0 0 15px 0;
   padding: 15px;
   border-bottom: 2px solid rgba(218, 165, 32, 0.3);
   gap: 12px;
   text-decoration: none;
   border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .contact-item:first-child {
@@ -607,7 +606,7 @@ p {
 }
 
 .contact-item.clickable:hover {
-  background: rgba(218, 165, 32, 0.1);
+  background: rgba(218, 165, 32, 0.15);
   transform: translateX(5px);
 }
 
@@ -617,15 +616,17 @@ p {
   font-weight: 700;
   text-align: left;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   word-wrap: break-word;
   line-height: 1.4;
+  width: 100%;
 }
 
 .contact-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .contact-item a {
@@ -633,14 +634,17 @@ p {
   font-size: 0.95rem;
   color: white;
   background: maroon;
-  padding: 10px 18px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 25px;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-weight: 500;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
   white-space: nowrap;
+  flex: 1;
+  min-width: 120px;
 }
 
 .contact-item a:hover {
@@ -653,21 +657,35 @@ p {
   font-size: 1rem;
   color: white;
   background: maroon;
-  padding: 10px 18px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 25px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-weight: 500;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
   white-space: nowrap;
+  width: 100%;
 }
 
 /* ===== RESPONSIVE DESIGN FOR DROPDOWN ===== */
 @media (max-width: 480px) {
   .dropdown-content {
-    width: calc(100% - 30px);
-    max-width: 380px;
+    left: 15px;
+    right: 15px;
     padding: 18px;
+    bottom: 90px;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      bottom: 70px;
+    }
+    to {
+      opacity: 1;
+      bottom: 90px;
+    }
   }
   
   .contact-item {
@@ -681,7 +699,46 @@ p {
   .contact-item a,
   .contact-item .icon {
     font-size: 0.9rem;
+    padding: 10px 18px;
+    min-width: 110px;
+  }
+}
+
+@media (max-width: 360px) {
+  .dropdown-content {
+    left: 10px;
+    right: 10px;
+    padding: 16px;
+    bottom: 85px;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      bottom: 65px;
+    }
+    to {
+      opacity: 1;
+      bottom: 85px;
+    }
+  }
+  
+  .contact-item {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .contact-name {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  
+  .contact-item a,
+  .contact-item .icon {
+    font-size: 0.85rem;
     padding: 9px 16px;
+    min-width: 100px;
+    gap: 6px;
   }
 }
 
