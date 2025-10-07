@@ -462,121 +462,207 @@
 }
 
     /* ===== BOTTOM NAVIGATION ===== */
-    .bottom-nav {
-      position: fixed;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 30px);
-      max-width: 450px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 30px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      height: 70px;
-      z-index: 999;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+.bottom-nav {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 30px);
+  max-width: 450px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+  z-index: 999;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-    .nav-item {
-      flex: 1;
-      text-align: center;
-      color: white;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 10px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      margin: 0 5px;
-      cursor: pointer;
-    }
+.nav-item {
+  flex: 1;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+  cursor: pointer;
+  position: relative;
+}
 
-    .nav-item:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
 
-    .nav-item span {
-      display: block;
-      font-size: 1.6rem;
-      margin-bottom: 5px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    }
+.nav-item span {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  pointer-events: none; /* Prevents span from blocking clicks */
+}
 
-    /* ===== DROPDOWN STYLES ===== */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+/* ===== DROPDOWN STYLES ===== */
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      min-width: 200px;
-      padding: 15px;
-      z-index: 100;
-      margin-bottom: 10px;
-      backdrop-filter: blur(10px);
-    }
+.dropdown-btn,
+.dropdown-btn2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  pointer-events: all;
+}
 
-    .dropdown.active .dropdown-content {
-      display: block;
-      animation: fadeInUp 0.3s ease;
-    }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  min-width: 250px;
+  padding: 15px;
+  z-index: 1000;
+  margin-bottom: 10px;
+  backdrop-filter: blur(10px);
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(10px);
-      }
+.dropdown.active .dropdown-content {
+  display: block;
+  animation: fadeInUp 0.3s ease;
+}
 
-      to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-    }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 8px 0;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
 
-    .contact-item:last-child {
-      border-bottom: none;
-    }
+.contact-item:last-child {
+  border-bottom: none;
+}
 
-    .contact-item span {
-      flex: 1;
-      font-size: 1rem;
-      color: #333;
-      font-weight: 500;
-    }
+.contact-item span {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+  text-align: left;
+  display: inline;
+  margin: 0;
+  filter: none;
+}
 
-    .contact-item a {
-      text-decoration: none;
-      font-size: 1.4rem;
-      margin-left: 10px;
-      color: #333;
-      transition: transform 0.2s ease;
-    }
+.contact-item a {
+  text-decoration: none;
+  font-size: 1.4rem;
+  margin-left: 10px;
+  color: #333;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
 
-    .contact-item a:hover {
-      transform: scale(1.2);
-    }
+.contact-item a:hover {
+  transform: scale(1.2);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 480px) {
+  .bottom-nav {
+    width: calc(100% - 20px);
+    height: 65px;
+    bottom: 10px;
+  }
+  
+  .nav-item {
+    font-size: 0.75rem;
+    padding: 8px 5px;
+    margin: 0 3px;
+  }
+  
+  .nav-item span {
+    font-size: 1.4rem;
+    margin-bottom: 3px;
+  }
+  
+  .dropdown-content {
+    min-width: 220px;
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+  
+  .contact-item {
+    padding: 6px 0;
+    margin: 6px 0;
+  }
+  
+  .contact-item span {
+    font-size: 0.8rem;
+  }
+  
+  .contact-item a {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .bottom-nav {
+    height: 60px;
+  }
+  
+  .nav-item {
+    font-size: 0.7rem;
+    padding: 6px 3px;
+  }
+  
+  .nav-item span {
+    font-size: 1.2rem;
+  }
+  
+  .dropdown-content {
+    min-width: 200px;
+    padding: 10px;
+  }
+}
 
     /* ===== MODAL STYLES ===== */
     .modal {
@@ -1122,47 +1208,45 @@
 
       <!-- Bottom Navigation -->
       <nav class="bottom-nav">
-        <div class="dropdown nav-item">
-          <a class="dropdown-btn">
-            <span>📞</span>
-            Call
-          </a>
-          <div class="dropdown-content">
-            <div class="contact-item">
-              <span>Bapa Pengantin:</span>
-              <a href="tel:+60199809663" title="Call">📞</a>
-              <a href="https://wa.me/60199809663" target="_blank" title="WhatsApp">💬</a>
-            </div>
-            <div class="contact-item">
-              <span>Ibu Pengantin:</span>
-              <a href="tel:+60139410169" title="Call">📞</a>
-              <a href="https://wa.me/60139410169" target="_blank" title="WhatsApp">💬</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="nav-item" onclick="openRSVP('Atiqah')">
-          <span>📝</span>
-          Ucapan
-        </div>
-
-        <div class="dropdown nav-item">
-          <a class="dropdown-btn2">
-            <span>📍</span>
-            Lokasi
-          </a>
-          <div class="dropdown-content">
-            <div class="contact-item">
-              <span>Waze Navigation:</span>
-              <a href="https://waze.com/ul?q=Qurata%20Riverside%20Resort" target="_blank" title="Buka di Waze">🚗</a>
-            </div>
-            <div class="contact-item">
-              <span>Google Maps:</span>
-              <a href="https://maps.app.goo.gl/BN4174oyt11S1j966" target="_blank" title="Buka di Google Maps">🗺️</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+  <div class="dropdown nav-item">
+    <div class="dropdown-btn">
+      <span>📞</span>
+      Call
+    </div>
+    <div class="dropdown-content">
+      <div class="contact-item">
+        <span>Bapa Pengantin:</span>
+        <a href="tel:+60199809663" title="Call">📞</a>
+        <a href="https://wa.me/60199809663" target="_blank" title="WhatsApp">💬</a>
+      </div>
+      <div class="contact-item">
+        <span>Ibu Pengantin:</span>
+        <a href="tel:+60139410169" title="Call">📞</a>
+        <a href="https://wa.me/60139410169" target="_blank" title="WhatsApp">💬</a>
+      </div>
+    </div>
+  </div>
+  <div class="nav-item" onclick="openRSVP('Atiqah')">
+    <span>📝</span>
+    Ucapan
+  </div>
+  <div class="dropdown nav-item">
+    <div class="dropdown-btn2">
+      <span>📍</span>
+      Lokasi
+    </div>
+    <div class="dropdown-content">
+      <div class="contact-item">
+        <span>Waze Navigation:</span>
+        <a href="https://waze.com/ul?q=Qurata%20Riverside%20Resort" target="_blank" title="Buka di Waze">🚗</a>
+      </div>
+      <div class="contact-item">
+        <span>Google Maps:</span>
+        <a href="https://maps.app.goo.gl/BN4174oyt11S1j966" target="_blank" title="Buka di Google Maps">🗺️</a>
+      </div>
+    </div>
+  </div>
+</nav>
     </div>
   </div>
 
