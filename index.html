@@ -508,6 +508,7 @@ p {
 }
 
 /* ===== DROPDOWN STYLES ===== */
+/* ===== DROPDOWN STYLES ===== */
 .dropdown {
   position: relative;
 }
@@ -532,8 +533,8 @@ p {
   border: 3px solid gold;
   border-radius: 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  min-width: 300px;
-  max-width: 90%;
+  width: calc(100% - 40px);
+  max-width: 400px;
   padding: 20px;
   z-index: 10000;
 }
@@ -591,8 +592,13 @@ p {
   border-radius: 8px;
 }
 
+.contact-item:first-child {
+  margin-top: 0;
+}
+
 .contact-item:last-child {
   border-bottom: none;
+  margin-bottom: 0;
 }
 
 .contact-item.clickable {
@@ -606,12 +612,14 @@ p {
 }
 
 .contact-name {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: maroon;
   font-weight: 700;
   text-align: left;
   display: block;
   margin-bottom: 5px;
+  word-wrap: break-word;
+  line-height: 1.4;
 }
 
 .contact-actions {
@@ -625,13 +633,14 @@ p {
   font-size: 0.95rem;
   color: white;
   background: maroon;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 20px;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 5px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .contact-item a:hover {
@@ -644,23 +653,48 @@ p {
   font-size: 1rem;
   color: white;
   background: maroon;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 20px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 /* ===== RESPONSIVE DESIGN FOR DROPDOWN ===== */
 @media (max-width: 480px) {
   .dropdown-content {
-    min-width: 280px;
-    padding: 15px;
+    width: calc(100% - 30px);
+    max-width: 380px;
+    padding: 18px;
+  }
+  
+  .contact-item {
+    padding: 14px;
+  }
+  
+  .contact-name {
+    font-size: 1.05rem;
+  }
+  
+  .contact-item a,
+  .contact-item .icon {
+    font-size: 0.9rem;
+    padding: 9px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .dropdown-content {
+    width: calc(100% - 25px);
+    max-width: 340px;
+    padding: 16px;
   }
   
   .contact-item {
     padding: 12px;
+    gap: 10px;
   }
   
   .contact-name {
@@ -669,30 +703,8 @@ p {
   
   .contact-item a,
   .contact-item .icon {
-    font-size: 0.9rem;
-    padding: 7px 14px;
-  }
-}
-
-@media (max-width: 360px) {
-  .dropdown-content {
-    min-width: 260px;
-    padding: 12px;
-  }
-  
-  .contact-item {
-    padding: 10px;
-    gap: 10px;
-  }
-  
-  .contact-name {
-    font-size: 0.95rem;
-  }
-  
-  .contact-item a,
-  .contact-item .icon {
     font-size: 0.85rem;
-    padding: 6px 12px;
+    padding: 8px 14px;
   }
 }
 
