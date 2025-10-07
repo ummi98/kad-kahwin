@@ -533,7 +533,7 @@ p {
   border: 3px solid gold;
   border-radius: 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  min-width: 280px;
+  min-width: 300px;
   max-width: 90%;
   padding: 20px;
   z-index: 10000;
@@ -583,15 +583,28 @@ p {
 
 .contact-item {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   margin: 12px 0;
-  padding: 12px 0;
+  padding: 15px 12px;
   border-bottom: 2px solid rgba(218, 165, 32, 0.3);
-  gap: 8px;
+  gap: 15px;
+  text-decoration: none;
 }
 
 .contact-item:last-child {
   border-bottom: none;
+}
+
+.contact-item.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.contact-item.clickable:hover {
+  background: rgba(218, 165, 32, 0.1);
+  transform: translateX(5px);
 }
 
 .contact-item > span {
@@ -600,12 +613,15 @@ p {
   font-weight: 600;
   text-align: left;
   display: block;
+  flex: 1;
 }
 
 .contact-actions {
   display: flex;
   gap: 15px;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
 }
 
 .contact-item a {
@@ -620,34 +636,50 @@ p {
   transform: scale(1.2);
 }
 
+.contact-item .icon {
+  font-size: 1.8rem;
+  color: maroon;
+  display: inline-block;
+}
+
 /* ===== RESPONSIVE DESIGN FOR DROPDOWN ===== */
 @media (max-width: 480px) {
   .dropdown-content {
-    min-width: 260px;
+    min-width: 280px;
     padding: 15px;
   }
   
-  .contact-item > span {
-    font-size: 0.9rem;
+  .contact-item {
+    padding: 12px 10px;
   }
   
-  .contact-item a {
+  .contact-item > span {
+    font-size: 0.95rem;
+  }
+  
+  .contact-item a,
+  .contact-item .icon {
     font-size: 1.6rem;
   }
 }
 
 @media (max-width: 360px) {
   .dropdown-content {
-    min-width: 240px;
+    min-width: 260px;
     padding: 12px;
   }
   
-  .contact-item > span {
-    font-size: 0.85rem;
+  .contact-item {
+    padding: 10px 8px;
   }
   
-  .contact-item a {
-    font-size: 1.4rem;
+  .contact-item > span {
+    font-size: 0.9rem;
+  }
+  
+  .contact-item a,
+  .contact-item .icon {
+    font-size: 1.5rem;
   }
 }
 
@@ -1239,7 +1271,6 @@ button:hover {
       </div>
 
       <!-- Bottom Navigation -->
-      <!-- Bottom Navigation -->
 <nav class="bottom-nav">
   <div class="nav-item dropdown">
     <div class="dropdown-trigger">
@@ -1275,18 +1306,18 @@ button:hover {
       Lokasi
     </div>
     <div class="dropdown-content">
-      <div class="contact-item">
+      <a href="https://waze.com/ul?q=Qurata%20Riverside%20Resort" target="_blank" class="contact-item clickable">
         <span>Waze Navigation:</span>
         <div class="contact-actions">
-          <a href="https://waze.com/ul?q=Qurata%20Riverside%20Resort" target="_blank" title="Buka di Waze">🚗</a>
+          <span class="icon">🚗</span>
         </div>
-      </div>
-      <div class="contact-item">
+      </a>
+      <a href="https://maps.app.goo.gl/BN4174oyt11S1j966" target="_blank" class="contact-item clickable">
         <span>Google Maps:</span>
         <div class="contact-actions">
-          <a href="https://maps.app.goo.gl/BN4174oyt11S1j966" target="_blank" title="Buka di Google Maps">🗺️</a>
+          <span class="icon">🗺️</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </nav>
